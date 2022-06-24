@@ -1,7 +1,5 @@
 # Implémenter le Continuous Testing
 
-
-
 Ce projet sert de support à l'atelier ***Implémenter le Continuous Testing***
 
 \
