@@ -1,9 +1,9 @@
 name: Automated Testing only
 
-on: [pull_request]
+on: [workflow_dispatch]
 
 env:
-  TAG: SanityCheck.${{ github.actor }}.${{ github.event.pull_request.created_at}}
+  TAG: SanityCheck.${{ github.actor }}.12345
 
 jobs:
   run_Tests_UAT:
