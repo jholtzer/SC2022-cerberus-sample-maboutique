@@ -17,6 +17,6 @@ jobs:
         host: https://jftl.cerberus-testing.fr
         campaign: SanityCheck
         apikey: ${{ secrets.APIKEY }}
-        author: ${{ github.actor }}
+        author: test
         environment: UAT
         tag: ${TAG}
