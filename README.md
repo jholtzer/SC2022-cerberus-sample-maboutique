@@ -17,11 +17,11 @@ Plan :
 
 Utiliser chrome ou firefox de préférence
 
-- Url : <a href="https://jftl.cerberus-testing.fr" target="_blank">link</a>
+- Url : <a href="https://jftl.cerberus-testing.fr" target="_blank">https://jftl.cerberus-testing.fr</a>
 
 Read/Write pour ceux qui veulent pratiquer en live :)
-- User : jftl
-- Pass : jftl
+- User : admin
+- Pass : admin
 
 \
 &nbsp;
