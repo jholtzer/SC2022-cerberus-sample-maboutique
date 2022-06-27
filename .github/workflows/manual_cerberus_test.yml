@@ -1,4 +1,4 @@
-name: Automated Testing only
+name: Manual Automated Testing only
 
 on: [workflow_dispatch]
 
