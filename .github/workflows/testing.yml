@@ -3,7 +3,7 @@ name: Automated Testing only
 on: [pull_request]
 
 env:
-  TAG: SanityCheck.${{ github.event.pusher.name }}.${{ github.event.repository.pushed_at}}
+  TAG: SanityCheck.${{ github.event.pull_request.user.login }}.${{ github.event.repository.pushed_at}}
 
 jobs:
   run_Tests_UAT:
@@ -17,6 +17,6 @@ jobs:
         host: https://jftl.cerberus-testing.fr
         campaign: SanityCheck
         apikey: ${{ secrets.APIKEY }}
-        author: ${{ github.event.pusher.name }}
+        author: ${{ github.event.pull_request.user.login }}
         environment: UAT
         tag: ${TAG}
