@@ -1,6 +1,6 @@
 name: Automated Testing only
 
-on: [workflow_dispatch]
+on: [pull_request_target]
 
 jobs:
   run_Tests_UAT:
