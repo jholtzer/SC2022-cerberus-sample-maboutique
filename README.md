@@ -1,7 +1,6 @@
 # Implémenter le Continuous Testing
 
 
-
 Ce projet sert de support à l'atelier ***Implémenter le Continuous Testing***
 
 \
@@ -11,6 +10,7 @@ Plan :
 - [ETAPE 1 : FORK le projet cerberustesting/cerberus-sample-maboutique](https://github.com/cerberustesting/cerberus-sample-maboutique#etape-1--fork-le-projet-cerberustestingcerberus-sample-maboutique).
 - [ETAPE 2 : Ajout d'une Github Actions Qualité de code](https://github.com/cerberustesting/cerberus-sample-maboutique#etape-2--ajout-dune-github-actions-qualit%C3%A9-de-code).
 - [ETAPE 3 : Ajout des tests automatiques dans la CI](https://github.com/cerberustesting/cerberus-sample-maboutique#etape-3--ajout-des-tests-automatiques-dans-la-ci).
+
 
 
 \
