@@ -19,8 +19,6 @@ Utiliser chrome ou firefox de préférence
 
 - Url : <a href="https://jftl.cerberus-testing.fr" target="_blank">link</a>
 
-![Cerberus](https://jftl.cerberus-testing.fr)
-
 Read/Write pour ceux qui veulent pratiquer en live :)
 - User : jftl
 - Pass : jftl
