@@ -1,0 +1,18 @@
+name: Automated Testing only
+
+on: [workflow_dispatch]
+
+jobs:
+  run_Tests_UAT:
+    name: Run_Tests_UAT
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: cerberus-action
+      uses: cerberustesting/cerberus-github-action@v6
+      with:
+        host: https://jftl.cerberus-testing.fr
+        campaign: SanityCheck
+        apikey: ${{ secrets.APIKEY }}
+        author: ${{ github.actor }}
+        environment: UAT
