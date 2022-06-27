@@ -2,9 +2,6 @@ name: Automated Testing only
 
 on: [pull_request]
 
-env:
-  TAG: SanityCheck.${{ github.actor }}.${{ github.event.pull_request.number }}
-
 jobs:
   run_Tests_UAT:
     name: Run_Tests_UAT
@@ -19,4 +16,3 @@ jobs:
         apikey: ${{ secrets.APIKEY }}
         author: ${{ github.actor }}
         environment: UAT
-        tag: ${TAG}
