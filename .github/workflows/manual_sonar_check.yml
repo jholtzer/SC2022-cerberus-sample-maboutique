@@ -1,4 +1,4 @@
-name: Code Analysis only
+name: Manual Code Analysis only
 
 on: [workflow_dispatch]
 
