@@ -58,6 +58,15 @@ Vous devriez être redirigé sur votre fork (Cf. ci dessous)
 \
 &nbsp;
 
+Dans l'onglet Actions, activer les workflows
+
+\
+&nbsp;
+
+<img width="557" alt="Capture d’écran 2022-06-27 à 22 33 04" src="https://user-images.githubusercontent.com/5376184/176030655-6f8270c8-4f3f-4986-9e11-e4c86d4034cd.png">
+
+\
+&nbsp;
 ---
 
 ## ETAPE 2 : Ajout d'une Github Actions Qualité de code
@@ -131,44 +140,25 @@ Vous devriez être redirigé sur votre fork (Cf. ci dessous)
 \
 &nbsp;
 
-<img width="770" alt="Capture d’écran 2022-06-12 à 11 05 22" src="https://user-images.githubusercontent.com/5376184/173225836-05ec0cb7-c13e-4695-91c7-a993960c2b8a.png">
+<img width="512" alt="Capture d’écran 2022-06-27 à 22 39 03" src="https://user-images.githubusercontent.com/5376184/176031593-186c4968-547b-4089-bc23-cf5a8d494c32.png">
 
 \
 &nbsp;
 
 
 ### Configurer 
-1. Cliquer sur Administration > Analysis Method
+1. Cliquer sur With Github Actions
 
 \
 &nbsp;
 
 <img width="220" alt="Capture d’écran 2022-06-12 à 20 33 53" src="https://user-images.githubusercontent.com/5376184/173249512-a13c54ec-588f-46a7-b948-0c1baa12da97.png">
 
-\
-&nbsp;
-
-2. Désactiver le scan automatique
 
 \
 &nbsp;
 
-<img width="1307" alt="Capture d’écran 2022-06-12 à 20 56 18" src="https://user-images.githubusercontent.com/5376184/173249539-3f3c5e5d-236e-4817-9d64-3c40b5c860e8.png">
-
-\
-&nbsp;
-
-3. Cliquer sur la configuration via github actions
-
-\
-&nbsp;
-
-<img width="1310" alt="Capture d’écran 2022-06-12 à 20 57 40" src="https://user-images.githubusercontent.com/5376184/173249555-f52d0501-2cb9-4a4d-8f79-e5500b9cddec.png">
-
-\
-&nbsp;
-
-4. Copier le Token SONAR_TOKEN
+2. Copier le Token SONAR_TOKEN
 <img width="1066" alt="Capture d’écran 2022-06-12 à 20 58 26" src="https://user-images.githubusercontent.com/5376184/173249610-40b888cf-093d-440c-9e1c-f5612807d738.png">
 
 \
@@ -240,96 +230,42 @@ sonar.organization
 \
 &nbsp;
 
-3. Changer les propiétés du fichier de propriété sonar-project.properties par les propiétés récupérées dans Sonar
+3. Executer manuellement l'action Code Quality pour vérifier la bonne intégration
 
 \
 &nbsp;
 
-<img width="1250" alt="Capture d’écran 2022-06-12 à 21 36 25" src="https://user-images.githubusercontent.com/5376184/173250293-33885f7f-83a8-4fbc-8bb5-3293e99294f7.png">
+<img width="740" alt="Capture d’écran 2022-06-27 à 22 48 27" src="https://user-images.githubusercontent.com/5376184/176032996-19bae884-62cc-474d-adf6-f702677eb05b.png">
 
 \
 &nbsp;
 
-4. Modifier le fichier /.github/workflows/full_CI_to_complete.yml
+Dans Sonar Cloud, vous obtenez une première analyse neutre car aucune Quality Gate n'est configuré
 
 \
 &nbsp;
 
-<img width="1264" alt="Capture d’écran 2022-06-12 à 21 41 40" src="https://user-images.githubusercontent.com/5376184/173250448-b4b8028d-3292-476c-ad46-e4f4db247aad.png">
+<img width="567" alt="Capture d’écran 2022-06-27 à 22 49 55" src="https://user-images.githubusercontent.com/5376184/176033196-b4cef4de-b74c-4bbd-b4b8-77f9c1273e69.png">
 
 \
 &nbsp;
 
-Cliquer sur edit
+Cliquez sur Set New Code Definition et choisir Previous Version
 
 \
 &nbsp;
 
-<img width="147" alt="Capture d’écran 2022-06-12 à 21 42 50" src="https://user-images.githubusercontent.com/5376184/173250466-0aada6d8-cdb8-4309-a488-76b5c1c9b22c.png">
+<img width="573" alt="Capture d’écran 2022-06-27 à 22 51 14" src="https://user-images.githubusercontent.com/5376184/176033402-092714e4-e80b-4a78-9cac-9910bc6e3cbc.png">
 
 \
 &nbsp;
 
-Coller la configuration ci dessous :
+Depuis la page Actions, relancer une analyse. Dans Sonar, vérifier le résultat :
 
 \
 &nbsp;
 
-```
-  sonarcloud:
-    needs: build
-    name: SonarCloud
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-```
-
-\
-&nbsp;
-
-Vous obtenez ce résultat : 
-
-\
-&nbsp;
-
-<img width="1127" alt="Capture d’écran 2022-06-12 à 21 43 47" src="https://user-images.githubusercontent.com/5376184/173250504-31a29274-a4af-4982-b5b7-cc7c9ee37046.png">
-
-\
-&nbsp;
-
-Cliquer sur Start Commit
-
-\
-&nbsp;
-
-<img width="618" alt="Capture d’écran 2022-06-12 à 21 44 52" src="https://user-images.githubusercontent.com/5376184/173250546-9ee1a17f-a84d-4f8b-96da-d2cd6858e982.png">
-
-\
-&nbsp;
-
-Depuis la page Actions, vérifier la bonne execution de la CI
-
-\
-&nbsp;
-
-<img width="1403" alt="Capture d’écran 2022-06-12 à 21 52 59" src="https://user-images.githubusercontent.com/5376184/173250763-bbd6148d-5e3b-4558-83da-c0d141a55fb4.png">
-
-\
-&nbsp;
-
-Dans Sonar, vérifier le résultat :
-
-\
-&nbsp;
-
-<img width="1049" alt="Capture d’écran 2022-06-12 à 11 17 34" src="https://user-images.githubusercontent.com/5376184/173226381-1dc7a317-62ab-41de-bcd7-bc04606307fe.png">
+<img width="749" alt="Capture d’écran 2022-06-12 à 11 17 34" src="https://user-images.githubusercontent.com/5376184/173226381-1dc7a317-62ab-41de-bcd7-bc04606307fe.png">
 
 \
 &nbsp;
