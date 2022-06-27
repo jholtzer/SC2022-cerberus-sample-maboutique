@@ -3,7 +3,7 @@ name: Automated Testing only
 on: [workflow_dispatch]
 
 env:
-  TAG: SanityCheck.${{ github.actor }}.12345
+  TAG: SanityCheck.${{ github.actor }}.${{ github.event.pull_request.number }}
 
 jobs:
   run_Tests_UAT:
@@ -17,6 +17,6 @@ jobs:
         host: https://jftl.cerberus-testing.fr
         campaign: SanityCheck
         apikey: ${{ secrets.APIKEY }}
-        author: test
+        author: ${{ github.actor }}
         environment: UAT
         tag: ${TAG}
