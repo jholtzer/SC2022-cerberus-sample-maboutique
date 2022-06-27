@@ -1,6 +1,6 @@
 name: Automated Testing only
 
-on: [workflow_dispatch]
+on: [pull_request]
 
 env:
   TAG: SanityCheck.${{ github.actor }}.${{ github.event.pull_request.number }}
