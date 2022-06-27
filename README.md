@@ -152,19 +152,13 @@ Dans l'onglet Actions, activer les workflows
 \
 &nbsp;
 
-<img width="220" alt="Capture d’écran 2022-06-12 à 20 33 53" src="https://user-images.githubusercontent.com/5376184/173249512-a13c54ec-588f-46a7-b948-0c1baa12da97.png">
-
-
-\
-&nbsp;
-
 2. Copier le Token SONAR_TOKEN
 <img width="1066" alt="Capture d’écran 2022-06-12 à 20 58 26" src="https://user-images.githubusercontent.com/5376184/173249610-40b888cf-093d-440c-9e1c-f5612807d738.png">
 
 \
 &nbsp;
 
-5. Choisir Other, et copier la configuration
+3. Choisir Other, et copier la configuration
 <img width="1032" alt="Capture d’écran 2022-06-12 à 21 02 13" src="https://user-images.githubusercontent.com/5376184/173249665-6bd5d406-ecaf-46f1-89c4-cbc91c3341dd.png">
 
 \
@@ -189,7 +183,7 @@ sonarcloud:
 \
 &nbsp;
 
-6. Copier les propriétés 
+4. Copier les propriétés 
 ```
 sonar.projectKey
 sonar.organization
@@ -198,7 +192,7 @@ sonar.organization
 \
 &nbsp;
 
-<img width="1036" alt="Capture d’écran 2022-06-12 à 21 19 45" src="https://user-images.githubusercontent.com/5376184/173249760-924a6856-3aa3-4567-81bf-d95765d23a24.png">
+<img width="736" alt="Capture d’écran 2022-06-12 à 21 19 45" src="https://user-images.githubusercontent.com/5376184/173249760-924a6856-3aa3-4567-81bf-d95765d23a24.png">
 
 
 \
@@ -377,7 +371,7 @@ $.each(names, function(_i, el){
 \
 &nbsp;
 
-Commit et vérifier la correction des erreurs
+Commit, relancer une execution de l'action Code Analysis et vérifier la correction des erreurs
 
 \
 &nbsp;
