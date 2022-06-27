@@ -3,7 +3,7 @@ name: Automated Testing only
 on: [pull_request]
 
 env:
-  TAG: SanityCheck.${{ github.actor }}.${{ github.event.repository.pushed_at}}
+  TAG: SanityCheck.${{ github.actor }}.${{ github.event.pull_request.created_at}}
 
 jobs:
   run_Tests_UAT:
