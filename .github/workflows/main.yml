@@ -1,6 +1,6 @@
 name: Code Analysis only
 
-on: [workflow_dispatch]
+on: [push]
 
 jobs:
   sonarcloud:
