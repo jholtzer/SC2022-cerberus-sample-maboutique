@@ -447,21 +447,63 @@ Commit, relancer une execution de l'action Code Analysis et vérifier la correct
 \
 &nbsp;
 
-4. Cliquer sur Full_CI_to_complete.yml
+4. Lancer l'execution du l'action Manual Automated Testing only
 
 \
 &nbsp;
 
-<img width="482" alt="Capture d’écran 2022-06-12 à 22 03 23" src="https://user-images.githubusercontent.com/5376184/173251289-bf5ebbcb-4eb7-46ce-99e2-3842cf5ebad1.png">
+<img width="729" alt="Capture d’écran 2022-06-28 à 08 56 07" src="https://user-images.githubusercontent.com/5376184/176113623-5689bc6a-1824-4612-a46d-d7ce2d56fd42.png">
 
-\&nbsp;
+\
+&nbsp;
 
-5. Cliquer sur edit et ajouter la configuration ci dessous
+<img width="535" alt="Capture d’écran 2022-06-28 à 08 57 24" src="https://user-images.githubusercontent.com/5376184/176113831-bee1af02-527a-4a7c-8b0f-2bdfedeab081.png">
+
+\
+&nbsp;
+
+## Intégrer l'execution des tests automatiques à la CI
+
+Editer le fichier full_CI_to_complete.yml en intégrant la configuration CERBERUS. Le fichier ressemble à ceci : 
 
 \
 &nbsp;
 
 ```
+name: Full CI to complete
+
+on: [push]
+
+env:
+  TAG: SanityCheck.${{ github.event.pusher.name }}.${{ github.event.repository.pushed_at}}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Checkout source and build
+      run: echo Hello, world!
+  sonarcloud:
+    needs: build
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          args: >
+            -Dsonar.organization=${{ github.repository_owner }}
+            -Dsonar.projectKey=${{ github.repository_owner }}_cerberus-sample-maboutique
+            -Dsonar.qualitygate.wait=true
+            -Dsonar.sources=.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   run_Tests_UAT:
     needs: sonarcloud
     name: Run_Tests_UAT
