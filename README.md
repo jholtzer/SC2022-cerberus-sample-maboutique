@@ -164,24 +164,6 @@ Dans l'onglet Actions, activer les workflows
 \
 &nbsp;
 
-```
-sonarcloud:
-    needs: build
-    name: SonarCloud
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-```
-
-\
-&nbsp;
 
 4. Copier les propriétés 
 ```
@@ -224,7 +206,7 @@ sonar.organization
 \
 &nbsp;
 
-3. Executer manuellement l'action Code Quality pour vérifier la bonne intégration
+3. Executer manuellement l'action Manual Code Analysis only pour vérifier la bonne intégration avec sonar
 
 \
 &nbsp;
@@ -264,7 +246,53 @@ Depuis la page Actions, relancer une analyse. Dans Sonar, vérifier le résultat
 \
 &nbsp;
 
-## Lancer un changement pour tester la Quality Gate
+## Integrer l'analyse de code Sonar à la CI
+
+Editer le fichier full_CI_to_complete.yml en intégrant la configuration SONAR. Le fichier ressemble à ceci : 
+
+\
+&nbsp;
+```
+name: Full CI to complete
+
+on: [push]
+
+env:
+  TAG: SanityCheck.${{ github.event.pusher.name }}.${{ github.event.repository.pushed_at}}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Checkout source and build
+      run: echo Hello, world!
+  sonarcloud:
+    needs: build
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          args: >
+            -Dsonar.organization=${{ github.repository_owner }}
+            -Dsonar.projectKey=${{ github.repository_owner }}_cerberus-sample-maboutique
+            -Dsonar.qualitygate.wait=true
+            -Dsonar.sources=.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+```
+
+\
+&nbsp;
+
+## Lancer un changement pour tester la bonne intégration à la CI de la Quality Gate
 
 \
 &nbsp;
@@ -279,7 +307,7 @@ Créer un nouveau fichier
 \
 &nbsp;
 
-Nommez le Newfile.js et renseigner le contenu suivant
+Nommez le votrenom.js et renseigner le contenu suivant
 
 \
 &nbsp;
@@ -377,6 +405,7 @@ Commit, relancer une execution de l'action Code Analysis et vérifier la correct
 &nbsp;
 
 <img width="1050" alt="Capture d’écran 2022-06-12 à 11 40 48" src="https://user-images.githubusercontent.com/5376184/173227263-86ee8590-3503-4c9f-89c5-9880361cd532.png">
+
 
 ## ETAPE 3 : Ajout des tests automatiques dans la CI
 
